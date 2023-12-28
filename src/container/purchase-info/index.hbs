@@ -1,0 +1,85 @@
+{{! 
+Це код container файлу для index сторінки, 
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+ }}
+<main class="main">
+{{#with data}}
+<form method="POST" action="/purchase-submit?id={{id}}" class="form-card">
+	{{>heading title="Інформація про замовника"}}
+    
+{{>divider}}
+    <div class="id">
+        <h3>ID:</h3>
+        <p>{{id}},jhf</p>
+    </div>
+    <div class="user">
+        <div>
+        <h3>Імя</h3>
+        <p>ydrhn{{firstname}}</p>
+        </div>
+    
+        <div>
+        <h3>Прізвище</h3>
+        <p>ydrhn{{lastname}}</p>
+        </div>
+   
+        <div>
+        <h3>Телефон</h3>
+        <p>ydrhn{{phone}}</p>
+        </div>
+
+        <div>
+        <h3>Електронна пошта</h3>
+        <p>ydrhn{{email}}</p>
+        </div>
+    </div>
+
+<div class="product">
+        <div>
+        <h3>Назва товару</h3>
+        <p>ydrhn{{title}}</p>
+        </div>
+        <div>
+        <h3>Коментар</h3>
+        <p>{{comment}}jhf</p>
+        </div>
+</div>
+
+<div class="prices">
+        <div>
+        <h3>Вартість товарів</h3>
+        <p>ydrhn{{productPrice}}</p>
+        </div>
+   
+         <div>
+        <h3>Вартість доставки</h3>
+        <p>ydrhn{{deliveryPrice}}</p>
+        </div>
+    
+   
+        <div>
+        <h3>Сума до сплати</h3>
+        <p>ydrhn{{totalPrice}}</p>
+        </div>
+    
+
+        <div>
+        <h3>Нараховані бонуси</h3>
+        <p>ydrhn{{bonus}}</p>
+        </div>
+
+</div>
+
+{{>divider}}
+
+{{>button text="Змінити данні"}}
+</form>
+{{/with}}
+</main>
+{{! 
+    Цей код містить лише те, що буде виводитись в <body>
+    Адже наш layout/default.hbs має вже структуру HTML
+}}
+
+
+

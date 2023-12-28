@@ -1,0 +1,85 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heading__title {
+  font-size: 24px;
+  color: blue;
+}
+
+.heading__info {
+  font-size: 16px;
+  color: #000;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+  width: 1000px;
+  height: 460px;
+  gap: 20px;
+}
+
+.product__block {
+  display: flex;
+  width: 976px;
+  height: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #CED4DA;
+}
+
+.id {
+  display: flex;
+  width: 150px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #808080;
+}
+
+.product {
+  display: grid;
+  width: 320px;
+  height: 60px;
+  gap: 12px;
+}
+
+.sum {
+  display: grid;
+  width: 235px;
+  height: 60px;
+  gap: 12px;
+}
+
+.bonus {
+  display: grid;
+  width: 211px;
+  height: 60px;
+  gap: 12px;
+}
+
+.h3 {
+  width: 320px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #808080;
+}
+
+.p {
+  width: 320px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #000000;
+}
+
+/*# sourceMappingURL=style.css.map */

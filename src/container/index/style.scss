@@ -1,0 +1,180 @@
+@use '../../lib/service.scss' as s;
+
+//Эта функция вызывает файл lib/service.scss 
+
+h1 {
+    color: blue;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 20px;
+    margin-left: 20px;
+}
+.card {
+    border: 2px solid;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 800px;
+}
+
+
+//=======FORM-CONTENT========
+.form {
+    
+    &__title {
+        font-size: 20px;
+        font-weight: bold;
+        padding-bottom: s.space(4);
+    }
+
+       
+    &__content {
+        display: grid;
+        justify-content: space-around;
+        gap: s.space(6);
+        font-size: 16px;
+    }
+
+    &__product {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: s.space(2);
+    }
+
+    &__label {
+        font-size: 20px;
+    }
+
+    &__input {
+        border: 1px solid s.color('light');
+        padding: s.space(2);
+       
+    }
+    &__button {
+        border: 1px solid s.color('light');
+        padding: s.space(2);
+        border-radius: 20px;
+        background-color: blue;
+        color: white;
+        width: 100%;
+        
+    }
+    &__info {
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        gap: s.space(2);
+       
+    }
+}
+
+//=====PRODUCT-ALERT================
+/*.alert {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+
+&__head {
+    display: flex;
+    flex-direction: column;
+}
+&__btn {
+    
+    border: 1px solid s.color('light');
+    padding: s.space(2);
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    max-width: 500px;
+}
+}*/
+//==========PRODUCT-LIST==========
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr, 1fr;
+    justify-content: space-between;
+   
+   
+    gap: s.space(2);
+}
+.item {
+    display: grid;
+    
+    border: 1px solid s.color('light');
+    border-radius: 5px;
+}
+//========PRODUCT-EDIT=========
+.edit {
+    display: flex;
+    flex-direction: column;
+  
+
+&__block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+&__field {
+    display: flex;
+    flex-direction:column;
+    margin: 10px;
+    gap: s.space(2);
+
+}
+
+&__button {
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+    padding: s.space(2);
+    color: white;
+    width: 100%;
+}
+}
+
+
+.btn-warning {
+    border: 1px solid s.color('light');
+    padding: s.space(2);
+    border-radius: 20px;
+    background-color: red;
+    color: white;
+    max-width: 500px;
+}
+.btn-primary {
+    border: 1px solid s.color('light');
+    padding: s.space(2);
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    max-width: 500px;
+}
+.product__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr.1fr;
+    margin: 10px;
+    gap: s.space(2);
+    
+    padding: 10px;
+    
+}
+.product__card {
+    display: grid;
+    border: 1px solid s.color('light');
+    border-radius: 5px;
+}
+
+.edit__card {
+    display: flex;
+    flex-direction:row;
+   
+    gap: s.space(2);
+}
