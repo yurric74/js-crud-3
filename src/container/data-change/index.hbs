@@ -4,11 +4,11 @@
  }}
 <main class="main">
 {{#with data}}
-<form method="POST" action="/purchase-submit?id={{id}}" class="form-card">
-	{{>heading title="Ваше замовлення"}}
+<form method="POST" action="/purchase-create?id={{id}}" class="form-card">
+	{{>heading title="Зміна данних"}}
 
 {{>divider}}
-<div class="id"> ID:kug{{id}}</div>
+<div class="id"> ID:{{id}}</div>
 <div class="form">
 {{>field label="Прізвище" name="lastname"}}
 {{>field label="Імя" name="firstname"}}

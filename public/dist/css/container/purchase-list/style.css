@@ -6,7 +6,7 @@
 
 .heading__title {
   font-size: 24px;
-  color: blue;
+  color: #000;
 }
 
 .heading__info {
@@ -31,6 +31,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #CED4DA;
+  cursor: pointer;
 }
 
 .id {

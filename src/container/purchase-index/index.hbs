@@ -9,7 +9,9 @@
 	{{> purchase-product data=data}}
 	{{> purchase-product data=data}}
 	{{> purchase-product data=data}}
-
+	{{#each data.list}}
+		{{>purchase-product data=list}}
+	{{/each}}
 </div>
 </main>
 {{! 

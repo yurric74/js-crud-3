@@ -16,6 +16,7 @@ class Product {
     amount = 0,
   ) {
     this.id = ++Product.#count //Генеруємо унікальний id для товару
+
     this.img = img
     this.title = title
     this.description = description
@@ -26,13 +27,13 @@ class Product {
 
   static add = (...data) => {
     const newProduct = new Product(...data)
-    this.#list.push(newProduct)
+    return this.#list.push(newProduct)
   }
 
   static getList = () => {
     return this.#list
   }
-
+  //Находит продукт по идентификатору
   static getById = (id) => {
     return this.#list.find((product) => product.id === id)
   }
@@ -51,9 +52,9 @@ class Product {
   }
 }
 Product.add(
-  'https://picsum.photos/200/300',
-  `Коьпютер Artline Gaming (X43v31) AMD Ryzen 5 3600/`,
-  `AMD Ryzen 5 3600 (3.6-4.2 GHz)……………`,
+  `https://picsum.photos/200/300`,
+  'Коьпютер Artline Gaming (X43v31) AMD Ryzen 5 3600/',
+  'AMD Ryzen 5 3600 (3.6-4.2 GHz)……………',
   [
     { id: 1, text: 'Готовий до відправки' },
     { id: 2, text: 'Топ продажів' },
@@ -63,17 +64,17 @@ Product.add(
 )
 
 Product.add(
-  'https://picsum.photos/200/300',
-  `Коьпютер Artline Gaming (X43v31) AMD Ryzen 5 3600/`,
-  `AMD Ryzen 5 3600 (3.6-4.2 GHz)……………`,
+  `https://picsum.photos/200/300`,
+  'Коьпютер Artline Gaming (X43v31) AMD Ryzen 5 3600/',
+  'AMD Ryzen 5 3600 (3.6-4.2 GHz)……………',
   [{ id: 1, text: 'Топ продажів' }],
   20000,
   10,
 )
 Product.add(
-  'https://picsum.photos/200/300',
-  `Коьпютер Artline Gaming (X43v31) AMD Ryzen 5 3600/`,
-  `AMD Ryzen 5 3600 (3.6-4.2 GHz)……………`,
+  `https://picsum.photos/200/300`,
+  'Коьпютер Artline Gaming (X43v31) AMD Ryzen 5 3600/',
+  'AMD Ryzen 5 3600 (3.6-4.2 GHz)……………',
   [{ id: 1, text: 'Топ продажів' }],
   40000,
   10,
@@ -101,12 +102,14 @@ class Purchase {
     price,
     bonusUse = 0,
   ) => {
+    // const amount = price * Purchase.#BONUS_FACTOR
     const amount = this.calcBonusAmount(price)
     const currentBalance = Purchase.getBonusBalance(email)
-    const updateBalance = currentBalance + amount - bonusUse
+    const updatedBalance =
+      currentBalance + amount - bonusUse
 
-    Purchase.#bonusAccount.set(email, updateBalance)
-    console.log(email, updateBalance)
+    Purchase.#bonusAccount.set(email, updatedBalance)
+    console.log(email, updatedBalance)
     return amount
   }
 
@@ -130,21 +133,27 @@ class Purchase {
 
     this.product = product
   }
+  //стат.метод, принимает ...аргументы и передаёт их в new Purchase
   static add = (...arg) => {
     const newPurchase = new Purchase(...arg)
+    //и вкладывает их в список #list
     this.#list.push(newPurchase)
+    //возвращает созданный заказ
     return newPurchase
   }
   static getList = () => {
-    return Purchase.#list.revers()
+    return Purchase.#list
+      .reverse()
+      .map(({ ...data }) => ({ ...data }))
   }
-
+  //находим и возвращаем заказ по id
   static getById = (id) => {
     return Purchase.#list.find((item) => item.id === id)
   }
 
   static updateById = (id, data) => {
     const purchase = Purchase.getById(id)
+
     if (purchase) {
       if (data.firstname)
         purchase.firstname = data.firstname
@@ -185,26 +194,50 @@ class Promocode {
 Promocode.add('SUMMER2023', 0.9)
 Promocode.add('DISCOUNT50', 0.5)
 Promocode.add('SALE25', 0.75)
+//============================
 
+// router.get('/', function (req, res) {
+//   res.render('index', {
+//     style: 'index',
+//     data: {
+//       //  list: Product.getList(),
+//     },
+//   })
+// })
+
+//=======ALERT=====================
+
+// router.get('/', function (req, res) {
+//   res.render('alert', {
+//     style: 'alert',
+//     data: {
+//       message: 'Операція успішна',
+//       info: 'Товар створений',
+//       link: '/test-path',
+//     },
+//   })
+// })
+
+//=========purchase-index============================
 router.get('/', function (req, res) {
-  res.render('index', {
-    style: 'index',
-    data: {
-      list: Product.getList(),
-    },
-  })
-})
-
-//=====================================
-router.get('/purchase-index', function (req, res) {
   res.render('purchase-index', {
     style: 'purchase-index',
+    // data: {
+    //   img: 'https://picsum.photos/200/300',
+    //   title: `Коьпютер Artline Gaming (X43v31) AMD Ryzen 5 3600/`,
+    //   description: `AMD Ryzen 5 3600 (3.6-4.2 GHz)……………`,
+    //   category: [
+    //     { id: 1, text: 'Готовий до відправки' },
+    //     { id: 2, text: 'Топ продажів' },
+    //   ],
+    //   price: 27000,
+    // },
     data: {
       list: Product.getList(),
     },
   })
 })
-//==========purchase-product================
+// //==========purchase-product================
 router.get('/purchase-product', function (req, res) {
   const id = Number(req.query.id)
   res.render('purchase-product', {
@@ -215,7 +248,7 @@ router.get('/purchase-product', function (req, res) {
     },
   })
 })
-//============purchase-create===========
+// //============purchase-create===========
 router.post(`/purchase-create`, function (req, res) {
   const id = Number(req.query.id)
   const amount = Number(req.body.amount)
@@ -271,7 +304,8 @@ router.post(`/purchase-create`, function (req, res) {
     },
   })
 })
-//=============purchase-submit==============
+
+// //=============purchase-submit==============
 router.post(`/purchase-submit`, function (req, res) {
   const id = Number(req.query.id)
 
@@ -285,7 +319,7 @@ router.post(`/purchase-submit`, function (req, res) {
     lastname,
     email,
     phone,
-    coment,
+    comment,
 
     promocode,
     bonus,
@@ -303,6 +337,7 @@ router.post(`/purchase-submit`, function (req, res) {
       },
     })
   }
+
   if (product.amount < amount) {
     return res.render('alert', {
       style: 'alert',
@@ -400,96 +435,67 @@ router.post(`/purchase-submit`, function (req, res) {
     },
   })
 })
-//========purchase-info===========================
+// //========purchase-info===========================
 router.get('/purchase-info', function (req, res) {
   const id = Number(req.query.id)
-  const price = console.log(id)
-  res.render('purchase-info', {
-    style: 'purchase-info',
-    data: {
-      id: Product.getById(id),
-    },
-  })
-})
 
-router.post(`/purchase-info`, function (req, res) {
-  const id = Number(req.query.id)
-  const amount = Number(req.body.amount)
-
-  if (amount < 1) {
-    return res.render('alert', {
-      style: 'alert',
-      data: {
-        message: 'Помилка',
-        info: 'Некоректна кількість товару',
-        link: `/data-change?id=${id}`,
-      },
-    })
-  }
-
+  const purchase = Purchase.getById(id)
   const product = Product.getById(id)
 
-  if (product.amount < 1) {
-    return res.render('alert', {
-      style: 'alert',
+  if ((purchase, product)) {
+    res.render('purchase-info', {
+      style: 'purchase-info',
       data: {
-        message: 'Помилка',
-        info: 'Такої кількістi товару немає в наявності',
-        link: `/data-change?id=${id}`,
+        id: purchase.id,
+        firstname: purchase.firstname,
+        lastname: purchase.lastname,
+        phone: purchase.phone,
+        email: purchase.email,
+        title: product.title,
+        comment: product.comment,
+        productPrice: purchase.productPrice,
+      },
+      // purchase,
+    })
+  }
+})
+
+// //=============purchase-list============
+router.get('/purchase-list', function (req, res) {
+  const id = Number(req.query.id)
+
+  // const purchase = Purchase.getById(id)
+  const product = Product.getById(id)
+  if (product) {
+    res.render('purchase-list', {
+      style: 'purchase-list',
+      data: {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        bonus: purchase.bonus,
       },
     })
   }
-  console.log(product, amount)
-
-  const productPrice = product.price * amount
-  const totalPrice = productPrice + Purchase.DELIVERY_PRICE
-  const bonus = Purchase.calcBonusAmount(totalPrice)
-
-  res.render('purchase-info', {
-    style: 'purchase-info',
-    data: {
-      id: product.id,
-      cart: [
-        {
-          text: `${product.title} (${amount}шт)`,
-          price: productPrice,
-        },
-        {
-          text: 'Доставка',
-          price: Purchase.DELIVERY_PRICE,
-        },
-      ],
-      totalPrice,
-      productPrice,
-      deliveryPrice: Purchase.DELIVERY_PRICE,
-      amount,
-      bonus,
-    },
-  })
-})
-//=============purchase-list============
-router.get('/purchase-list', function (req, res) {
-  const id = Number(req.query.id)
-  const price = console.log(id)
-  res.render('purchase-list', {
-    style: 'purchase-list',
-    data: {
-      id: Product.getById(id),
-    },
-  })
 })
 
-//=============data-change============
+// //=============data-change============
 
 router.get('/data-change', function (req, res) {
   const id = Number(req.query.id)
-  const price = console.log(id)
-  res.render('data-change', {
-    style: 'data-change',
-    data: {
-      id: Product.getById(id),
-    },
-  })
+  const purchase = Purchase.getById(id)
+  if (purchase) {
+    res.render('data-change', {
+      style: 'data-change',
+      data: {
+        id: purchase.id,
+        firstname: purchase.firstname,
+        lastname: purchase.lastname,
+        email: purchase.email,
+        phone: purchase.phone,
+      },
+    })
+  }
 })
-//========END======//
+// //========END======//
 module.exports = router
