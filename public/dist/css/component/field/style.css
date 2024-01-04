@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.field__label {
+  font-size: 14px;
+  color: #bdbdbd;
+}
+
+.field__input {
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.field—disabled {
+  position: absolute;
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,85 @@
+{{! 
+Це код container файлу для index сторінки, 
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+ }}
+<main class="main">
+{{#with data}}
+<form method="POST" action="/purchase-info?id={{id}}" class="form-card">
+	{{>heading title="Інформація про замовлення"}}
+    
+{{>divider}}
+    <div class="id">
+        <h3>ID:</h3>
+        <p>{{id}}</p>
+    </div>
+    <div class="user">
+        <div>
+        <h3>Імя</h3>
+        <p>{{firstname}}</p>
+        </div>
+    
+        <div>
+        <h3>Прізвище</h3>
+        <p>{{lastname}}</p>
+        </div>
+   
+        <div>
+        <h3>Телефон</h3>
+        <p>{{phone}}</p>
+        </div>
+
+        <div>
+        <h3>Електронна пошта</h3>
+        <p>{{email}}</p>
+        </div>
+    </div>
+
+<div class="product">
+        <div>
+        <h3>Назва товару</h3>
+        <p>{{title}}</p>
+        </div>
+        <div>
+        <h3>Коментар</h3>
+        <p>{{comment}}</p>
+        </div>
+</div>
+
+<div class="prices">
+        <div>
+        <h3>Вартість товарів</h3>
+        <p>{{productPrice}}</p>
+        </div>
+   
+         <div>
+        <h3>Вартість доставки</h3>
+        <p>{{deliveryPrice}}</p>
+        </div>
+    
+   
+        <div>
+        <h3>Сума до сплати</h3>
+        <p>{{totalPrice}}</p>
+        </div>
+    
+
+        <div>
+        <h3>Нараховані бонуси</h3>
+        <p>{{bonus}}</p>
+        </div>
+
+</div>
+
+{{>divider}}
+
+<a href="/data-change?id={{id}}">{{>button text="Змінити данні"}}</a>
+</form>
+{{/with}}
+</main>
+{{! 
+    Цей код містить лише те, що буде виводитись в <body>
+    Адже наш layout/default.hbs має вже структуру HTML
+}}
+
+
+

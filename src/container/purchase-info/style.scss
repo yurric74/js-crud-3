@@ -1,0 +1,67 @@
+@use "../../lib/service.scss" as s;
+
+@use "../../component/heading/style.scss" as heading;
+@use "../../component/divider/style.scss" as divider;
+@use "../../component/field/style.scss" as field;
+@use "../../component/button/style.scss" as button;
+
+.main {
+display: flex;
+flex-direction: column;
+gap: s.space(10);
+padding: s.space(10);
+}
+
+.form-card {
+width: 100%;
+display:flex;
+flex-direction: column;
+gap:s.space(5);
+padding:s.space(5);
+border: 1px solid s.color(border);
+border-radius: 10px;
+
+}
+
+h3 {
+    color: s.color(gray);
+}
+p {
+    color: s.color(black);
+}
+.id {
+    display:flex;
+    flex-direction: column;
+    gap: s.space(4);
+    align-items: flex-start;
+    border-bottom: 1px solid #CED4DA;
+    padding-bottom: 20px;
+    
+}
+.user {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; 
+    border-bottom: 1px solid  #CED4DA;
+    gap: s.space(4);
+    align-items: flex-start;
+    padding-bottom: 20px;
+}
+.product {
+    display: grid;
+    border-bottom: 1px solid #CED4DA;
+    gap: s.space(4);
+    align-items: flex-start;
+    padding-bottom: 20px;
+}
+.prices {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+    border-bottom: 1px solid #CED4DA;
+    gap: s.space(4);
+    align-items: flex-start;
+    padding-bottom: 20px;
+}
